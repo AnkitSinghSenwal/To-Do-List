@@ -3,11 +3,25 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\ListItem;
 
 class TodoListController extends Controller
 {
     //
-    function saveItem(){
-        return view('welcome');
+    public function index(){
+        return view('welcome', ['listItems' => ListItem::all() ] );
     }
+
+
+    public function saveItem(Request $request){
+        
+        // \Log::info(json_encode($request->all()));    It will save the items to the log file.
+        $newListItem = new ListItem;
+        $newListItem->name = $request->listItem;
+        $newListItem->is_complete = 0;
+        $newListItem->save(); 
+        return view('welcome', ['listItems' => ListItem::all() ] );
+    }
+
+
 }
