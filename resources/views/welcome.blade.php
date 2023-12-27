@@ -21,7 +21,14 @@
             <h1>To do list </h1>
                 
             @foreach ($listItems as $listItem)
-                <p>Item: {{ $listItem->name }} </p>
+                <div class="flex" style="align-items:center;">
+                    <p>Item: {{ $listItem->name }} 
+                    <form method="post" action="{{ route('markComplete', $listItem->id)}}" accept-charset="UTF-8">
+                        {{csrf_field() }}    
+                        <button type="submit" style="max-hight: 25px; margin-left: 20px;">Mark Complete</button>
+                    </form>
+                    </p>
+                </div>
             @endforeach   
                 
                 
