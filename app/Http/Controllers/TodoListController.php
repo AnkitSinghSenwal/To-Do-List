@@ -12,6 +12,10 @@ class TodoListController extends Controller
         return view('welcome', ['listItems' => ListItem::where('is_complete', 0)->get() ] );
     }
 
+    public function workList(){
+        return view('workDone', ['listItems' => ListItem::where('is_complete', 1)->get() ] );
+    }
+
     public function markComplete($id) {
        // \Log::info($id);
        // \Log::info($listItem);
@@ -23,6 +27,13 @@ class TodoListController extends Controller
         return redirect('/');
     }
 
+    public function markIncomplete($id){
+        $listItem = ListItem::find($id);
+        $listItem->is_complete = 0;
+        $listItem->save();
+        
+        return redirect('/workDone');
+    }
 
     public function saveItem(Request $request){
         

@@ -16,13 +16,13 @@
         </style>
     </head>
     <body style="background-color:black;">
-            <div style="color:gray;margin: auto; width: 50%; border: 3px solid blue; padding: 10px;"> 
-                
+            <div style="color:red;width: 30%;margin:auto; border: 3px solid blue; padding: 10px;"> 
+
             <h1>To do list </h1>
                 
             @foreach ($listItems as $listItem)
                 <div class="flex" style="align-items:center;">
-                    <p>Item: {{ $listItem->name }} 
+                    <p>Task : {{ $listItem->name }} 
                     <form method="post" action="{{ route('markComplete', $listItem->id)}}" accept-charset="UTF-8">
                         {{csrf_field() }}    
                         <button type="submit" style="max-hight: 25px; margin-left: 20px;">Mark Complete</button>
@@ -42,8 +42,10 @@
                     <button type="submit" style="border: 3px solid blue;">Add Item</button>
                 
                 </form>
+                <a href="\workDone">See Work Done</a>
             </div>
 
+            
 
 
 
